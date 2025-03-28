@@ -10,6 +10,12 @@ from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {Formik,Form,Field} from "formik";
+import { object, string, number, date, InferType } from 'yup';
+
+const signupValidationSchema =object({
+  name:string().required("Name is required"),
+  
+})
 
 
 const Signup = () => {
