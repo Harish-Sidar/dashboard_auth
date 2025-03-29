@@ -4,26 +4,33 @@ import { Button, Card,
     Container,
     Flex,
     FormControl,
+    FormErrorMessage,
     FormLabel,
     Input, Stack, Text } 
 from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {Formik,Form,Field} from "formik";
-import { object, string, number, date, InferType } from 'yup';
+import { object, string,ref} from 'yup';
+import Cards from '../../../components/Cards';
 
 const signupValidationSchema =object({
   name:string().required("Name is required"),
-  
+  surname:string().required("surname is required"),
+  email:string().email("Email is invalid").required("Email is invalid"),
+  password:string().min(6,"Password must be at least 6 characters")
+  .required("password is required"),
+  repeatPassword:string().oneOf([ref("password"),null],
+  "Password must match").required("Pepeat password is required"),
 })
-
+ 
 
 const Signup = () => {
   return (
     <Container>
         <Center minH="100vh">
-        <Card p="6" borderRadius="1rem" w="456px">
-            <Text textStyle="h1">Welcome to Crypto App</Text>
+        <Cards>
+            <Text fontWeight="medium" textStyle="h1">Welcome to Crypto App</Text>
             <Text textStyle="p2" color="black.60" mt ="4">
                 Create a free account by filling data below.
                 </Text>
@@ -39,6 +46,8 @@ const Signup = () => {
                 console.log(values);
               }}
 
+              validationSchema={signupValidationSchema}
+
               >
          {()=>(
               <Form>
@@ -53,7 +62,7 @@ const Signup = () => {
                              name = "name"
                               placeholder='Enter your name....'
                               />
-     
+                             <FormErrorMessage>{meta.error}</FormErrorMessage>
                          </FormControl>
                          )}
                        </Field>
@@ -67,7 +76,7 @@ const Signup = () => {
                               name = "surname" 
                               placeholder='Enter your Surname....'
                               />
-     
+                           <FormErrorMessage>{meta.error}</FormErrorMessage>
                          </FormControl>
                          )}
                        </Field>
@@ -83,6 +92,7 @@ const Signup = () => {
                              type='email'
                               placeholder='Enter your Email....'
                               />
+                              <FormErrorMessage>{meta.error}</FormErrorMessage>
      
                          </FormControl>
                          )}
@@ -97,6 +107,7 @@ const Signup = () => {
                              type='password'
                               placeholder='Enter your Password....'
                               />
+                              <FormErrorMessage>{meta.error}</FormErrorMessage>
      
                          </FormControl>
                          )}
@@ -111,6 +122,7 @@ const Signup = () => {
                              type='password'
                               placeholder='Enter your Repeatpassword....'
                               />
+                              <FormErrorMessage>{meta.error}</FormErrorMessage>
      
                          </FormControl>
                          )}
@@ -138,7 +150,7 @@ const Signup = () => {
          )}
               </Formik>
    
-            </Card> 
+            </Cards> 
               </Center>
     </Container>
   )
