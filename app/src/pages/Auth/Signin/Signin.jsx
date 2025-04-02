@@ -11,18 +11,16 @@ from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {Formik,Form,Field} from "formik";
-import { object, string,ref} from 'yup';
+import { object, string} from 'yup';
 import Cards from '../../../components/Cards';
 
 
 const signinValidationSchema =object({
-  name:string().required("Name is required"),
-  surname:string().required("surname is required"),
+
   email:string().email("Email is invalid").required("Email is invalid"),
   password:string().min(6,"Password must be at least 6 characters")
   .required("password is required"),
-  repeatPassword:string().oneOf([ref("password"),null],
-  "Password must match").required("Pepeat password is required"),
+ 
 })
  
 

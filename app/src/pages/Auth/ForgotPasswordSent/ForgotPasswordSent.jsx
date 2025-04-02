@@ -1,12 +1,12 @@
 import { Box, Button, Card, Center, Icon, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import Cards from '../../../components/Cards'
-import { MdEmail } from "react-icons/md";
+import { GiCheckMark } from "react-icons/gi";
 
-const RegisterEmailVerify = () => {
+const ForgotPasswordSent = () => {
   return (
 <Center h="100vh" >
-<Card 
+<Cards 
   p={{
     base :"4",
     md:"10"
@@ -14,20 +14,21 @@ const RegisterEmailVerify = () => {
 showCard = {true}
 >
         <VStack spacing={6}>
-            <Icon as={MdEmail} boxSize="48px" color="p.purple" />
+            <Icon as={GiCheckMark} boxSize="48px" color="green" />
             <Text textStyle ="h4" fontWeight="medium" color = "p.black">
-                Email Verification
+                Successful sent
             </Text>
             <Text textAlign="center" textStyle="p2" color="black.60">
-                We Have sent you an email verification to {" "}
+                We Have sent instructiions on how to reset your password to {" "}
                 <Box as ="b" color= "p.black">jennny.wilson@gmail.com </Box>If you didn't receive it, 
-                click the button below.
+                please follow the instructions from 
+                the email we have sent you an email verification to {" "}
             </Text>
-            <Button w="full" variant="outline">Re-Send Email</Button>
+          
         </VStack>
-    </Card>
+    </Cards>
 </Center>
   )
 }
 
-export default RegisterEmailVerify
+export default ForgotPasswordSent
