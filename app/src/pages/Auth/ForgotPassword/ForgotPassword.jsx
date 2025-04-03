@@ -1,4 +1,4 @@
-import { Button,Center, FormControl, FormErrorMessage, FormLabel, Icon, Input, Stack, Text } from '@chakra-ui/react'
+import { Button,Center, Container, FormControl, FormErrorMessage, FormLabel, Icon, Input, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import Cards from '../../../components/Cards'
 import { Formik,Form,Field } from 'formik';
@@ -15,7 +15,8 @@ const ForgotPassword = () => {
   })
 
 
-  return (
+  return ( 
+    <Container>
 <Center h="100vh" >
 <Cards> 
   <Link to="/signin">
@@ -77,6 +78,7 @@ Enter your email address for which account
 
 </Cards> 
 </Center>
+</Container>
   )
 }
 

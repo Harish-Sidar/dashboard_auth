@@ -1,4 +1,4 @@
-import { Box, Button, Card, Center, Icon, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Card, Center, Container, Icon, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import Cards from '../../../components/Cards'
 import { BsPatchCheckFill} from "react-icons/bs";
@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 const RegisterSuccess = () => {
   return (
+    <Container>
 <Center h="100vh" >
+
 <Cards>
         <VStack spacing={6}>
             <Icon as={BsPatchCheckFill} boxSize="48px" color="green" />
@@ -24,7 +26,9 @@ const RegisterSuccess = () => {
             </Box>
         </VStack>
     </Cards>
+
 </Center> 
+</Container>
   )
 }
 

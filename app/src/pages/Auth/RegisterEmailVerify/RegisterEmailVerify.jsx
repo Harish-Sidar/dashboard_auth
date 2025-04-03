@@ -1,10 +1,11 @@
-import { Box, Button, Card, Center, Icon, Text, VStack } from '@chakra-ui/react'
+import { Box, Button, Card, Center, Container, Icon, Text, VStack } from '@chakra-ui/react'
 import React from 'react'
 import Cards from '../../../components/Cards'
 import { MdEmail } from "react-icons/md";
 
 const RegisterEmailVerify = () => {
   return (
+<Container>
 <Center h="100vh" >
 <Card 
   p={{
@@ -27,6 +28,7 @@ showCard = {true}
         </VStack>
     </Card>
 </Center>
+</Container>
   )
 }
 
