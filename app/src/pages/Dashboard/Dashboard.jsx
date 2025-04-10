@@ -24,7 +24,8 @@ const exampleQuery  = useQuery({
           base: "repeat(1, 1fr)",
           xl: "repeat(2, 1fr)",
         }}
-        gap="6"
+        gap="6" 
+
       >
         <GridItem
           colSpan={{
