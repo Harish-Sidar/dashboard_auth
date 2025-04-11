@@ -1,4 +1,3 @@
-import { date } from "yup";
 import Axios from "../axios";
 
 export const fetchExample = async () => {

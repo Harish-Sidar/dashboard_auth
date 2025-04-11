@@ -6,13 +6,16 @@ import { Button, Card,
     FormControl,
     FormErrorMessage,
     FormLabel,
-    Input, Stack, Text } 
+    Input, Stack, Text, 
+    useToast} 
 from '@chakra-ui/react'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {Formik,Form,Field} from "formik";
 import { object, string,ref} from 'yup';
 import Cards from '../../../components/Cards';
+import { useMutation } from 'react-query';
+import { signupUser } from '../../../api/query/userQuery';
 
 const signupValidationSchema =object({
   name:string().required("Name is required"),
@@ -26,6 +29,28 @@ const signupValidationSchema =object({
  
 
 const Signup = () => {
+
+const navigate = useNavigate();
+  const toast = useToast();
+    const { mutate, isLoading } = useMutation({
+      mutationKey: "signup",
+      mutationFn: signupUser,
+      onSuccess: (data) => {
+        console.log("Signup successful:", data);
+      },
+      onError: (error) => {
+        toast({
+          title: "Signup Error",
+          description: error.message,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      },
+    });
+
+
+
   return (
     <Container>
         <Center minH="100vh">
@@ -43,7 +68,14 @@ const Signup = () => {
               }}
               
               onSubmit={(values)=>{
-                console.log(values);
+                mutate({
+                 
+                  firstName:values.name,
+                  lastName:values.surname,
+                  email:values.email,
+                  password:values.password,
+               
+                })
               }}
 
               validationSchema={signupValidationSchema}
@@ -136,7 +168,7 @@ const Signup = () => {
                                </Text>
                            </Text>
                        </Checkbox>
-                       <Button type='submit'>Create Account</Button>
+                       <Button  isLoading={isLoading} type='submit'>Create Account</Button>
                        <Text textStyle="p3" color="black.60" textAlign="center">
                            Already have an accoundt?{" "}
                            <Link to ="/signin">
