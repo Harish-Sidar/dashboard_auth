@@ -12,7 +12,7 @@ import ForgotPasswordSent from "./pages/Auth/ForgotPasswordSent/ForgotPasswordSe
 import ResetPasswordSuccess from "./pages/Auth/ResetPasswordSuccess/ResetPasswordSuccess";
 import ResetPassword from "./pages/Auth/ResetPassword/ResetPassword";
 import {QueryClient, QueryClientProvider} from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { ReactQueryDevtools } from "react-query/devtools"; 
 
 const router = createBrowserRouter([
   {
@@ -57,14 +57,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/ResetPassword",
-    element: <ResetPassword/>,
+    element: <ResetPassword/>, 
   },
 ]);
 
-function App() {
+function App() { 
 
   const queryClient = new QueryClient();
-  return (
+  return ( 
 
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />

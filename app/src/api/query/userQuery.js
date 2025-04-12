@@ -16,7 +16,7 @@ export const signinUser = async ({password,email}) => {
     }
 } 
 
-export const signupUser = async ({password,email,firstName,lastName}) => {
+export const signUpUser = async ({password,email,firstName,lastName}) => {
     try {
         
         const {data} = await Axios.post(`${USER_URL}/signup`,{

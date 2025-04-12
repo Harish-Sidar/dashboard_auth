@@ -6,7 +6,7 @@ import { Button, Card,
     FormControl,
     FormErrorMessage,
     FormLabel,
-    Input, Stack, Text, 
+    Input,Stack,Text, 
     useToast} 
 from '@chakra-ui/react'
 import React from 'react'
@@ -15,7 +15,7 @@ import {Formik,Form,Field} from "formik";
 import { object, string,ref} from 'yup';
 import Cards from '../../../components/Cards';
 import { useMutation } from 'react-query';
-import { signupUser } from '../../../api/query/userQuery';
+import { signUpUser } from '../../../api/query/userQuery';
 
 const signupValidationSchema =object({
   name:string().required("Name is required"),
@@ -30,17 +30,19 @@ const signupValidationSchema =object({
 
 const Signup = () => {
 
-const navigate = useNavigate();
+const navigate = useNavigate(); 
   const toast = useToast();
     const { mutate, isLoading } = useMutation({
       mutationKey: "signup",
-      mutationFn: signupUser,
+      mutationFn: signUpUser,
       onSuccess: (data) => {
-        console.log("Signup successful:", data);
+        navigate("/registerEmailVerify",{
+          state: { email: data.email },
+        })
       },
       onError: (error) => {
         toast({
-          title: "Signup Error",
+          title: "SignUp Error",
           description: error.message,
           status: "error",
           duration: 5000,
@@ -147,7 +149,9 @@ const navigate = useNavigate();
                         <Field name = "repeatPassword">
                          {({field,meta})=>(
                              <FormControl isInvalid = {!!(meta.error && meta.touched)}>
-                             <FormLabel htmlFor='repeatPassword' >RepeatPassword</FormLabel>
+                             <FormLabel htmlFor='repeatPassword'>
+                              RepeatPassword
+                              </FormLabel>
                              <Input
                              {...field}
                              name = "repeatPassword"
